@@ -2,8 +2,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.ServerSocket;
 
-public class CommonTest {
+public class JavaCommonTest {
     @Test
     public void givenWritingStringToFile_whenUsingFileOutputStream_thenCorrect()
             throws IOException {
