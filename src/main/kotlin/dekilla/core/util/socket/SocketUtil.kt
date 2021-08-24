@@ -1,4 +1,4 @@
-package dekilla.core.util.socketutil
+package dekilla.core.util.socket
 
 import org.springframework.stereotype.Service
 import java.io.*

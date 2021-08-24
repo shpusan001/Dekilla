@@ -16,4 +16,5 @@ class SpringTest {
         println(serverManager2)
         Assertions.assertEquals(serverManager1, serverManager2)
     }
+    
 }

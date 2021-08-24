@@ -35,4 +35,9 @@ class HashMapSockRepository : SockRepository {
             return false
         }
     }
+
+    override fun close() {
+        repository.forEach { e -> e.value.close() }
+        repository.clear()
+    }
 }

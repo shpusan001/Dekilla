@@ -32,4 +32,9 @@ interface SockRepository {
      * 삭제 대상이 없으면 false, 제데로 삭제되면 true
      */
     fun remove(key: String): Boolean
+
+    /**
+     * 모든 소켓을 close 하고 제거
+     */
+    fun close()
 }

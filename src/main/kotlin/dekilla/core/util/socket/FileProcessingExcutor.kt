@@ -1,4 +1,4 @@
-package dekilla.core.util.socketutil
+package dekilla.core.util.socket
 
 interface FileProcessingExcutor {
 

@@ -1,7 +1,7 @@
-import dekilla.core.util.socketutil.FileRecieveProcessingExcutor
-import dekilla.core.util.socketutil.FileSendProcessingExcutor
+import dekilla.core.util.socket.FileRecieveProcessingExcutor
+import dekilla.core.util.socket.FileSendProcessingExcutor
 import org.junit.jupiter.api.Test
-import dekilla.core.util.socketutil.SocketUtil
+import dekilla.core.util.socket.SocketUtil
 import java.io.File
 import java.net.ServerSocket
 import java.net.Socket
