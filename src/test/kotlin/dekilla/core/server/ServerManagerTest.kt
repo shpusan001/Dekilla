@@ -27,4 +27,24 @@ class ServerManagerTest {
 
         serverManager.close()
     }
+
+    @Test
+    fun ServerManagerRecieveTest() {
+        val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
+        val serverManager: ServerManager = ac.getBean("serverManager") as ServerManager
+        serverManager.bind(9999)
+        serverManager.accept()
+        serverManager.processing()
+
+        Thread(Runnable {
+            val socket1: Socket = Socket("127.0.0.1", 9999)
+            val socket2: Socket = Socket("127.0.0.1", 9999)
+            val socket3: Socket = Socket("127.0.0.1", 9999)
+            val socket4: Socket = Socket("127.0.0.1", 9999)
+        }).start()
+
+        Thread.sleep(1000)
+
+        serverManager.close()
+    }
 }

@@ -1,12 +1,12 @@
-package dekilla.core.server.runnable
+package dekilla.core.server.runnable.accept
 
 import dekilla.core.AppConfig
 import dekilla.core.domain.SockDto
 import dekilla.core.repository.SockRepository
+import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.generator.IdGenerator
 import dekilla.core.util.socket.SocketUtil
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.getBean
+import dekilla.core.util.socket.WrappedSocket
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.net.ServerSocket
@@ -34,14 +34,16 @@ class DefaultAcceptRunnable : AcceptRunnable {
 
             if (!Thread.interrupted()) {
                 val sockId: String = idGenerator.generate()
-                sockRepository.add(sockId, socket)
+                DekillaLog.log("${sockId}님 접속")
+                val wrappedSocket = WrappedSocket(socket, sockId)
+                sockRepository.add(sockId, wrappedSocket)
 
                 val sockDto: SockDto = SockDto(
                     "SEND_ID",
                     "#",
                     sockId
                 )
-                socketUtil.send(socket, sockDto)
+                socketUtil.send(wrappedSocket.socket, sockDto)
             }
         }
     }

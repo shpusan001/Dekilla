@@ -1,6 +1,8 @@
 package dekilla.core.repository
 
+import dekilla.core.util.socket.WrappedSocket
 import java.net.Socket
+import java.util.concurrent.CopyOnWriteArrayList
 
 interface SockRepository {
 
@@ -10,7 +12,7 @@ interface SockRepository {
      * @return Boolean
      * 키가 중복되어 덮어쓰면 false, 중복되지 않고 추가되면 true
      */
-    fun add(key: String, socket: Socket): Boolean
+    fun add(key: String, socket: WrappedSocket): Boolean
 
     /**
      * @param key
@@ -20,11 +22,24 @@ interface SockRepository {
     fun isContain(key: String): Boolean
 
     /**
+     * @param value
+     * @return Boolean
+     * 값이 포함되어 있지안으면 false, 키가 포함되어 있으면 true
+     */
+    fun isContain(value: WrappedSocket): Boolean
+
+    /**
      * @param key
      * @return Socket
      * 해당 키에 속하는 소켓 반환
      */
-    fun get(key: String): Socket?
+    fun get(key: String): WrappedSocket?
+
+    /**
+     * @return List<Socket>
+     * 소켓들을 리스트로 반환
+     */
+    fun getList(): CopyOnWriteArrayList<WrappedSocket>
 
     /**
      * @param key

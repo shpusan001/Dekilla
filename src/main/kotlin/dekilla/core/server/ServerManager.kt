@@ -1,11 +1,12 @@
 package dekilla.core.server
 
 import dekilla.core.repository.SockRepository
-import dekilla.core.server.runnable.AcceptRunnable
-import dekilla.core.server.runnable.DefaultAcceptRunnable
+import dekilla.core.server.runnable.accept.AcceptRunnable
+import dekilla.core.server.runnable.accept.DefaultAcceptRunnable
+import dekilla.core.server.runnable.recieve.DefaultRecieveRunnable
+import dekilla.core.server.runnable.recieve.RecieveRunnable
 import dekilla.core.util.socket.SocketUtil
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import java.net.ServerSocket
 
@@ -19,6 +20,8 @@ class ServerManager {
     private lateinit var serverSocket: ServerSocket
     private lateinit var acceptThread: Thread
     private lateinit var acceptRunnable: AcceptRunnable
+    private lateinit var recieveThread: Thread
+    private lateinit var recieveRunnable: RecieveRunnable
 
     private val sockRepository: SockRepository
     private val socketUtil: SocketUtil
@@ -39,8 +42,15 @@ class ServerManager {
         acceptThread.start()
     }
 
+    fun processing() {
+        recieveRunnable = DefaultRecieveRunnable(sockRepository)
+        recieveThread = Thread(recieveRunnable)
+        recieveThread.start()
+    }
+
     fun close() {
         acceptThread.interrupt()
+        recieveThread.interrupt()
         sockRepository.close()
     }
 }

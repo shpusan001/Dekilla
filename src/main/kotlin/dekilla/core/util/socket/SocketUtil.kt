@@ -21,9 +21,6 @@ class SocketUtil {
             sockObjectOutputStream.writeObject(obj)
         } catch (e: IOException) {
             throw e
-        } finally {
-            sockOutputStream.close()
-            sockObjectOutputStream.close()
         }
     }
 
@@ -40,9 +37,6 @@ class SocketUtil {
             return obj
         } catch (e: IOException) {
             throw e
-        } finally {
-            sockInputStream.close()
-            sockObjectInputStream.close()
         }
     }
 
@@ -72,8 +66,6 @@ class SocketUtil {
         } catch (e: IOException) {
             throw e
         } finally {
-            fileInputStream.close()
-            sockOutputStream.close()
             fpl.end()
         }
     }
@@ -103,8 +95,6 @@ class SocketUtil {
         } catch (e: IOException) {
             throw  e
         } finally {
-            fileOutputStream.close()
-            sockInputStream.close()
             fpl.end()
         }
     }
