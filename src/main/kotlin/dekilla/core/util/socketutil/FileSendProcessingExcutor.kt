@@ -1,8 +1,8 @@
-package listener.file;
+package dekilla.core.util.socketutil
 
-class FileRecieveProcessingListener : FileProcessingListener {
+class FileSendProcessingExcutor : FileProcessingExcutor {
     override fun start() {
-        
+
     }
 
     override fun excute(totalReadBytes: Long, fileSize: Long) {
@@ -10,6 +10,6 @@ class FileRecieveProcessingListener : FileProcessingListener {
     }
 
     override fun end() {
-
+        
     }
 }

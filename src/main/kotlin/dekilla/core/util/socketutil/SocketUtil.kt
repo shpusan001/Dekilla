@@ -1,12 +1,10 @@
-package util
+package dekilla.core.util.socketutil
 
-import listener.file.FileProcessingListener
-import listener.file.FileSendProcessingListener
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 import java.io.*
 import java.net.Socket
 
-@Component
+@Service
 class SocketUtil {
 
     private val DEFAULT_BUFFER_SIZE: Int = 10000
@@ -54,7 +52,7 @@ class SocketUtil {
      * @param fileProcessingListener
      * @throws IOException
      */
-    fun sendFile(socket: Socket, file: File, fpl: FileProcessingListener) {
+    fun sendFile(socket: Socket, file: File, fpl: FileProcessingExcutor) {
         val fileInputStream = FileInputStream(file)
         val sockOutputStream = socket.getOutputStream()
 
@@ -87,7 +85,7 @@ class SocketUtil {
      * @param fileProcessingListener
      * @throws IOException
      */
-    fun recieveFile(socket: Socket, path: String, fileSize: Long, fpl: FileProcessingListener) {
+    fun recieveFile(socket: Socket, path: String, fileSize: Long, fpl: FileProcessingExcutor) {
         val fileOutputStream = FileOutputStream(path)
         val sockInputStream = socket.getInputStream()
 

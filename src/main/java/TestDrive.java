@@ -1,5 +1,5 @@
 import org.springframework.boot.SpringBootConfiguration;
-import util.SocketUtil;
+import dekilla.core.util.socketutil.SocketUtil;
 
 import java.net.Socket;
 

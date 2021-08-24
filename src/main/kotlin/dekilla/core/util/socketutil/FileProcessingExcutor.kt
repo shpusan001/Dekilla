@@ -1,6 +1,6 @@
-package listener.file
+package dekilla.core.util.socketutil
 
-interface FileProcessingListener {
+interface FileProcessingExcutor {
 
     fun start()
     fun excute(totalReadBytes: Long, fileSize: Long)

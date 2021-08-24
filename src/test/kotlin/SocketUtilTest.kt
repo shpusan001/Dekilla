@@ -1,12 +1,12 @@
-import listener.file.FileRecieveProcessingListener
-import listener.file.FileSendProcessingListener
+import dekilla.core.util.socketutil.FileRecieveProcessingExcutor
+import dekilla.core.util.socketutil.FileSendProcessingExcutor
 import org.junit.jupiter.api.Test
-import util.SocketUtil
+import dekilla.core.util.socketutil.SocketUtil
 import java.io.File
 import java.net.ServerSocket
 import java.net.Socket
 
-class CommonTest {
+class SocketUtilTest {
 
     @Test
     fun dataSendTest() {
@@ -32,16 +32,16 @@ class CommonTest {
         Thread(Runnable {
             val serverSock: ServerSocket = ServerSocket(11111)
             val socket: Socket = serverSock.accept()
-            val file: File = File("testFile.txt")
+            val file: File = File("image.png")
             filesize = file.length()
-            SocketUtil().sendFile(socket, file, FileSendProcessingListener())
+            SocketUtil().sendFile(socket, file, FileSendProcessingExcutor())
         }).start()
 
         Thread.sleep(100)
 
         Thread(Runnable {
             val socket: Socket = Socket("127.0.0.1", 11111)
-            SocketUtil().recieveFile(socket, "recieved.txt", filesize, FileRecieveProcessingListener())
+            SocketUtil().recieveFile(socket, "recieved.txt", filesize, FileRecieveProcessingExcutor())
         }).start()
     }
 }
