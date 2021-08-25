@@ -1,8 +1,8 @@
-package dekilla.core.server.handler.exception;
+package dekilla.core.client.handler.exception
 
 import dekilla.core.util.socket.WrappedSocket
 
-interface SocketExceptionHandler {
-
+interface ClientSocketExceptionHandler {
+    
     fun connectionLost(wrappedSocket: WrappedSocket)
 }

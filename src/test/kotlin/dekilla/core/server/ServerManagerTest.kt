@@ -1,6 +1,7 @@
 package dekilla.core.server
 
 import dekilla.core.AppConfig
+import dekilla.core.client.ClientManager
 import dekilla.core.domain.SockDto
 import dekilla.core.util.socket.SocketUtil
 import org.junit.jupiter.api.Test
@@ -32,19 +33,17 @@ class ServerManagerTest {
     fun ServerManagerRecieveTest() {
         val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
         val serverManager: ServerManager = ac.getBean("serverManager") as ServerManager
-        serverManager.bind(9999)
+        serverManager.bind(33333)
         serverManager.accept()
         serverManager.processing()
 
         Thread(Runnable {
-            val socket1: Socket = Socket("127.0.0.1", 9999)
-            val socket2: Socket = Socket("127.0.0.1", 9999)
-            val socket3: Socket = Socket("127.0.0.1", 9999)
-            val socket4: Socket = Socket("127.0.0.1", 9999)
+            val cm = ClientManager(SocketUtil())
+            cm.connect()
+            cm.processing()
         }).start()
-
         Thread.sleep(1000)
-
         serverManager.close()
+        Thread.sleep(1000)
     }
 }

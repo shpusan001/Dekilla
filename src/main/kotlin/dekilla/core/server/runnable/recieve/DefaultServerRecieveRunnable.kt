@@ -3,7 +3,7 @@ package dekilla.core.server.runnable.recieve
 import dekilla.core.AppConfig
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.SockRepository
-import dekilla.core.server.handler.exception.SocketExceptionHandler
+import dekilla.core.server.handler.exception.ServerSocketExceptionHandler
 import dekilla.core.server.handler.recieve.ServerRecieveHandler
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import java.util.concurrent.CopyOnWriteArrayList
 
-class DefaultRecieveRunnable : RecieveRunnable {
+class DefaultServerRecieveRunnable : ServerRecieveRunnable {
 
     private val sockRepository: SockRepository
     private val sockList: CopyOnWriteArrayList<WrappedSocket>
@@ -20,7 +20,7 @@ class DefaultRecieveRunnable : RecieveRunnable {
 
     private val socketUtil: SocketUtil
     private val serverRecieveHandler: ServerRecieveHandler
-    private val serverSocketExceptionHandler: SocketExceptionHandler
+    private val serverSocketExceptionHandler: ServerSocketExceptionHandler
 
     constructor(sockRepository: SockRepository) {
         this.sockRepository = sockRepository
@@ -34,8 +34,8 @@ class DefaultRecieveRunnable : RecieveRunnable {
             ServerRecieveHandler::class.java
         )
         serverSocketExceptionHandler = ac.getBean(
-            "serverSocketExceptionHandler",
-            SocketExceptionHandler::class.java
+            "defaultServerSocketExceptionHandler",
+            ServerSocketExceptionHandler::class.java
         )
     }
 
