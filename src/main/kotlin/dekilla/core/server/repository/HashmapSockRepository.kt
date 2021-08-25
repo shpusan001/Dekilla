@@ -1,4 +1,4 @@
-package dekilla.core.repository
+package dekilla.core.server.repository
 
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.stereotype.Repository

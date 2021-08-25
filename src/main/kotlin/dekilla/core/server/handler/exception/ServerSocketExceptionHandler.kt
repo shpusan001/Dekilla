@@ -1,15 +1,10 @@
 package dekilla.core.server.handler.exception
 
-import dekilla.core.AppConfig
-import dekilla.core.repository.SockRepository
+import dekilla.core.server.repository.SockRepository
 import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.getBean
-import org.springframework.context.ApplicationContext
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Service
-import java.net.Socket
 
 @Service
 class ServerSocketExceptionHandler : SocketExceptionHandler {

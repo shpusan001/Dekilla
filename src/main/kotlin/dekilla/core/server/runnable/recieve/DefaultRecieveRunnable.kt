@@ -2,14 +2,13 @@ package dekilla.core.server.runnable.recieve
 
 import dekilla.core.AppConfig
 import dekilla.core.domain.SockDto
-import dekilla.core.repository.SockRepository
+import dekilla.core.server.repository.SockRepository
 import dekilla.core.server.handler.exception.SocketExceptionHandler
 import dekilla.core.server.handler.recieve.ServerRecieveHandler
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
-import java.net.Socket
 import java.util.concurrent.CopyOnWriteArrayList
 
 class DefaultRecieveRunnable : RecieveRunnable {
@@ -26,7 +25,7 @@ class DefaultRecieveRunnable : RecieveRunnable {
     constructor(sockRepository: SockRepository) {
         this.sockRepository = sockRepository
         this.sockList = sockRepository.getList()
-        
+
         val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
 
         socketUtil = ac.getBean(SocketUtil::class.java)

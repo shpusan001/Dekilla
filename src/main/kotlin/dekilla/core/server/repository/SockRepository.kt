@@ -1,7 +1,6 @@
-package dekilla.core.repository
+package dekilla.core.server.repository
 
 import dekilla.core.util.socket.WrappedSocket
-import java.net.Socket
 import java.util.concurrent.CopyOnWriteArrayList
 
 interface SockRepository {

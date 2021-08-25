@@ -14,7 +14,7 @@ class DefaultServerRecieveHandler : ServerRecieveHandler {
 
     override fun process(sockDto: SockDto) {
         if (commandRepository.containsKey(sockDto.command)) {
-            commandRepository.get(sockDto.command)!!.excute()
+            commandRepository.get(sockDto.command)!!.excute(sockDto)
         }
     }
 }

@@ -2,7 +2,7 @@ package dekilla.core.server.runnable.accept
 
 import dekilla.core.AppConfig
 import dekilla.core.domain.SockDto
-import dekilla.core.repository.SockRepository
+import dekilla.core.server.repository.SockRepository
 import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.generator.IdGenerator
 import dekilla.core.util.socket.SocketUtil

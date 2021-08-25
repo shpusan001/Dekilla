@@ -1,6 +1,6 @@
 package dekilla.core.server
 
-import dekilla.core.repository.SockRepository
+import dekilla.core.server.repository.SockRepository
 import dekilla.core.server.runnable.accept.AcceptRunnable
 import dekilla.core.server.runnable.accept.DefaultAcceptRunnable
 import dekilla.core.server.runnable.recieve.DefaultRecieveRunnable
