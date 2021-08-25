@@ -41,7 +41,8 @@ class DefaultAcceptRunnable : AcceptRunnable {
                 val sockDto: SockDto = SockDto(
                     "SEND_ID",
                     "#",
-                    sockId
+                    sockId,
+                    null
                 )
                 socketUtil.send(wrappedSocket.socket, sockDto)
             }

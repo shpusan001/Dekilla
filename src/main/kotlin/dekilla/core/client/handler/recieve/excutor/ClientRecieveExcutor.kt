@@ -1,4 +1,4 @@
-package dekilla.core.client.handler.recieve
+package dekilla.core.client.handler.recieve.excutor
 
 import dekilla.core.domain.SockDto
 

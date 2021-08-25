@@ -1,8 +1,12 @@
 package dekilla.core.client.view;
 
-import javax.swing.*;
-import java.awt.*;
+import dekilla.core.client.ClientManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.swing.*;
+
+@Component
 public class MainView {
     private JPanel container;
     private JTextField Tf_myToken;
@@ -17,6 +21,14 @@ public class MainView {
     private JLabel La_targetToken;
     private JTextField Tf_targetToken;
     private JTextPane Tp_status;
+    private JButton Bu_connect;
+
+    private ClientManager clientManager;
+
+    @Autowired
+    MainView(ClientManager clientManager) {
+        this.clientManager = clientManager;
+    }
 
     public void create() {
         JFrame frame = new JFrame("Dekilla");
@@ -24,9 +36,13 @@ public class MainView {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
+
+        networkInit();
     }
 
-    public static void main(String args[]) {
-        new MainView().create();
+    public void networkInit() {
+        clientManager.connect();
+        clientManager.processing();
     }
+
 }

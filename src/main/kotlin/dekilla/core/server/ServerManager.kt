@@ -7,10 +7,11 @@ import dekilla.core.server.runnable.recieve.DefaultServerRecieveRunnable
 import dekilla.core.server.runnable.recieve.ServerRecieveRunnable
 import dekilla.core.util.socket.SocketUtil
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Controller
 import org.springframework.stereotype.Service
 import java.net.ServerSocket
 
-@Service
+@Controller
 class ServerManager {
 
     companion object {

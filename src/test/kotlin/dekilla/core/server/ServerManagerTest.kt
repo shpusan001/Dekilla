@@ -2,8 +2,12 @@ package dekilla.core.server
 
 import dekilla.core.AppConfig
 import dekilla.core.client.ClientManager
+import dekilla.core.client.handler.exception.DefaultClientSocketExceptionHandler
 import dekilla.core.domain.SockDto
+import dekilla.core.util.socket.FileRecieveProcessingExcutor
+import dekilla.core.util.socket.FileSendProcessingExcutor
 import dekilla.core.util.socket.SocketUtil
+import dekilla.core.util.socket.WrappedSocket
 import org.junit.jupiter.api.Test
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -38,12 +42,46 @@ class ServerManagerTest {
         serverManager.processing()
 
         Thread(Runnable {
-            val cm = ClientManager(SocketUtil())
-            cm.connect()
+            val cm = ClientManager(
+                SocketUtil(),
+                DefaultClientSocketExceptionHandler(),
+                FileRecieveProcessingExcutor(),
+                FileSendProcessingExcutor()
+            )
+            val wrappedSocket: WrappedSocket = cm.connect()!!
+            Thread.sleep(50)
+            SocketUtil().send(
+                wrappedSocket.socket, SockDto(
+                    "NOTICE",
+                    "#",
+                    "test message1",
+                    null
+                )
+            )
             cm.processing()
         }).start()
+
+        Thread(Runnable {
+            val cm = ClientManager(
+                SocketUtil(),
+                DefaultClientSocketExceptionHandler(),
+                FileRecieveProcessingExcutor(),
+                FileSendProcessingExcutor()
+            )
+            val wrappedSocket: WrappedSocket = cm.connect()!!
+            Thread.sleep(100)
+            SocketUtil().send(
+                wrappedSocket.socket, SockDto(
+                    "NOTICE",
+                    "#",
+                    "test message2",
+                    null
+                )
+            )
+            cm.processing()
+        }).start()
+
         Thread.sleep(1000)
         serverManager.close()
-        Thread.sleep(1000)
     }
 }
