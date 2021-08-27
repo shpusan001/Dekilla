@@ -24,7 +24,7 @@ import java.net.Socket
 class ClientManager {
 
     companion object {
-        val ip: String = "127.0.0.1"
+        val ip: String = "xxx.xxx.xxx.xxx"
         val port: Int = 33333
     }
 
@@ -57,6 +57,7 @@ class ClientManager {
                 return wrappedSocket
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             clientSocketExceptionHandler.connectionFaild()
         }
         return null

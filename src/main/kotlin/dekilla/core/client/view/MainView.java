@@ -26,6 +26,7 @@ public class MainView {
     private JButton Bu_connect;
     private JTextArea Ta_status;
     private JScrollPane Js_status;
+    private JButton bu_statusClear;
 
     private ClientManager clientManager;
 
@@ -96,6 +97,13 @@ public class MainView {
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+
+        bu_statusClear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Ta_status.setText("");
             }
         });
     }

@@ -15,7 +15,7 @@ class FileRecieveProcessingExcutor : FileProcessingExcutor {
 
 
     override fun excute(fileName: String, readBytes: Int, totalReadBytes: Long, fileSize: Long) {
-        Ta_status.append("[Downloading...] File name: [${fileName}], Progress: [${totalReadBytes}/${fileSize}]" + "\n")
+        Ta_status.append("[Downloading...] File name: [${fileName}], Progress(kb): [${totalReadBytes / 1000}/${fileSize / 1000}]" + "\n")
         Ta_status.setCaretPosition(Ta_status.getDocument().getLength())
     }
 
