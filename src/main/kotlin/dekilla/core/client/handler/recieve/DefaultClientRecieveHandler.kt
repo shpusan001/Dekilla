@@ -13,6 +13,9 @@ class DefaultClientRecieveHandler : ClientRecieveHandler {
         commandRepository.put("CONNECT_WITH_TOKEN_NO", ConnectWithTokenNoExcutor())
         commandRepository.put("CONNECT_WITH_TOKEN_FAILD", ConnectWithTokenFailedExcutor())
         commandRepository.put("FILE_SEND_FAILD", FileSendFaildExcutor())
+        commandRepository.put("FILE_SEND_STOC", FileSendStoCExcutor())
+        commandRepository.put("FILE_SEND_START_STOC", FileSendStartStocExcutor())
+        commandRepository.put("FILE_SEND_END_STOC", FileSendEndStocExcutor())
     }
 
     override fun addCommand(command: String, excutor: ClientRecieveExcutor) {
@@ -20,8 +23,12 @@ class DefaultClientRecieveHandler : ClientRecieveHandler {
     }
 
     override fun process(sockDto: SockDto) {
-        if (commandRepository.containsKey(sockDto.command)) {
-            commandRepository.get(sockDto.command)!!.excute(sockDto)
+        try {
+            if (commandRepository.containsKey(sockDto.command)) {
+                commandRepository.get(sockDto.command)!!.excute(sockDto)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 }

@@ -1,52 +1,41 @@
 package dekilla.core.client.file
 
-import dekilla.core.client.ClientManager
 import dekilla.core.container.ClientContainer
-import dekilla.core.container.UtilConatiner
-import dekilla.core.domain.SockDto
-import dekilla.core.util.socket.FileSendProcessingExcutor
 import java.io.File
-import java.io.FileInputStream
-import java.io.IOException
+import javax.swing.JOptionPane
+import javax.swing.JPanel
 
 class FileController {
 
-    private val clientManager: ClientManager = ClientContainer.clientManager()
-    private val fpl: FileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
+    val fileSendService: FileSendService = ClientContainer.fileService()
 
-    fun sendFile(file: File) {
-        val fileInputStream = FileInputStream(file)
+    var currentFile: File? = null
 
-        val fileSize: Long = file.length()
-        var totalReadBytes: Long = 0
-        var buffer: ByteArray? = ByteArray(DEFAULT_BUFFER_SIZE)
-        var readBytes: Int
+    var downloadFolder: File? = null
 
-        try {
-            fpl.start()
-
-            while ((fileInputStream.read(buffer).also { readBytes = it }) > 0) {
-                val sockDto: SockDto = SockDto(
-                    "FILE_MODERATOR",
-                    "#",
-                    clientManager.wrappedSocket!!.id + "#" + clientManager.connectedId,
-                    buffer
-                )
-
-                clientManager.sendData(sockDto)
-
-                totalReadBytes += readBytes
-                fpl.excute(totalReadBytes, fileSize)
+    fun sendFile() {
+        if (currentFile != null && downloadFolder != null) {
+            if (currentFile!!.exists() && downloadFolder!!.exists()) {
+                fileSendService.startSendFile(currentFile!!)
+                fileSendService.sendFile(currentFile!!)
+                fileSendService.endSendFile()
+            } else {
+                JOptionPane.showMessageDialog(null, "선택한 전송할 파일이나 다운로드폴더가 존재하지 않습니다.");
             }
-        } catch (e: IOException) {
-            throw e
-        } finally {
-            fpl.end()
-            fileInputStream.close()
+        } else {
+            JOptionPane.showMessageDialog(null, "전송할 파일과 다운로드폴더를 선택하지 않았습니다")
         }
     }
 
-    fun readFile(file: File) {
-        
+    fun sendFile(file: File) {
+        currentFile = file
+
+        if (currentFile != null) {
+            if (currentFile!!.exists()) {
+                fileSendService.startSendFile(currentFile!!)
+                fileSendService.sendFile(currentFile!!)
+                fileSendService.endSendFile()
+            }
+        }
     }
 }
