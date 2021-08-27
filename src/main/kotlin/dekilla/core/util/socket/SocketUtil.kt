@@ -55,17 +55,13 @@ class SocketUtil {
         var readBytes: Int
 
         try {
-            fpl.start()
-
             while ((fileInputStream.read(buffer).also { readBytes = it }) > 0) {
                 sockOutputStream.write(buffer, 0, readBytes)
                 totalReadBytes += readBytes
-                fpl.excute(totalReadBytes, fileSize)
             }
         } catch (e: IOException) {
             throw e
         } finally {
-            fpl.end()
             fileInputStream.close()
         }
     }
@@ -85,17 +81,13 @@ class SocketUtil {
         var totalReadBytes: Long = 0
         var readBytes: Int
         try {
-            fpl.start()
-
             while ((sockInputStream.read(buffer).also { readBytes = it }) != -1) {
                 fileOutputStream.write(buffer, 0, readBytes)
                 totalReadBytes += readBytes
-                fpl.excute(totalReadBytes, fileSize)
             }
         } catch (e: IOException) {
             throw  e
         } finally {
-            fpl.end()
             fileOutputStream.close()
         }
     }

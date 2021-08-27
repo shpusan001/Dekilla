@@ -27,6 +27,6 @@ class HashmapDataSendPermissionRepository : DataSendPermissionRepository {
     }
 
     override fun authorization(senderId: String, recieverId: String): Boolean {
-        return sendMap.get(senderId) == recieverId
+        return sendMap.get(senderId) == recieverId || recieveMap.get(senderId) == recieverId
     }
 }

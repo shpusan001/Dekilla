@@ -16,15 +16,13 @@ public class FileSendService {
 
     private val clientManager: ClientManager = ClientContainer.clientManager()
     private val mainView: MainView = ViewContainer.mainView()
-    private val fpl: FileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
+    private val fspl: FileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
 
     fun fileSendPermissionRequest() {
         val sockId: String = clientManager.wrappedSocket!!.id
         val targetToken: String = clientManager.connectedId
 
         try {
-            fpl.start()
-
             val sockDto: SockDto = SockDto(
                 "FILE_SEND_PERMISSION_CTOS",
                 "#",
@@ -36,8 +34,6 @@ public class FileSendService {
 
         } catch (e: IOException) {
             throw e
-        } finally {
-            fpl.end()
         }
     }
 
@@ -46,8 +42,6 @@ public class FileSendService {
         val targetToken: String = clientManager.connectedId
 
         try {
-            fpl.start()
-
             val sockDto: SockDto = SockDto(
                 "FILE_SEND_START_CTOS",
                 "#",
@@ -59,8 +53,6 @@ public class FileSendService {
 
         } catch (e: IOException) {
             throw e
-        } finally {
-            fpl.end()
         }
     }
 
@@ -68,6 +60,7 @@ public class FileSendService {
         val sockId: String = clientManager.wrappedSocket!!.id
         val targetToken: String = clientManager.connectedId
 
+        val fileName: String = file.name
         val fileInputStream = FileInputStream(file)
 
         val fileSize: Long = file.length()
@@ -76,7 +69,7 @@ public class FileSendService {
         var readBytes: Int
 
         try {
-            fpl.start()
+            fspl.start(fileName, fileSize)
 
             while ((fileInputStream.read(buffer).also {
                     readBytes = it
@@ -91,12 +84,12 @@ public class FileSendService {
                 clientManager.sendData(sockDto)
 
                 totalReadBytes += readBytes
-                fpl.excute(totalReadBytes, fileSize)
+                fspl.excute(fileName, readBytes, totalReadBytes, fileSize)
             }
         } catch (e: IOException) {
             throw e
         } finally {
-            fpl.end()
+            fspl.end(fileName)
             fileInputStream.close()
         }
     }
@@ -106,8 +99,6 @@ public class FileSendService {
         val targetToken: String = clientManager.connectedId
 
         try {
-            fpl.start()
-
             val sockDto: SockDto = SockDto(
                 "FILE_SEND_END_CTOS",
                 "#",
@@ -120,7 +111,6 @@ public class FileSendService {
         } catch (e: IOException) {
             throw e
         } finally {
-            fpl.end()
         }
     }
 }

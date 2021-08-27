@@ -23,7 +23,7 @@ class ConnectWithTokenAskExcutor : ClientRecieveExcutor {
         val requesterToken: String = sockDto.data.split(sockDto.seperator)[0]
         val targetToken: String = sockDto.data.split(sockDto.seperator)[1]
 
-        val state: Int = JOptionPane.showConfirmDialog(null, "${requesterToken}님이 연결을 요청했습니다. 수락하시겠습니까?")
+        val state: Int = JOptionPane.showConfirmDialog(null, "[${requesterToken}] requested a connection. Accept?")
 
         if (state == JOptionPane.OK_OPTION) {
 

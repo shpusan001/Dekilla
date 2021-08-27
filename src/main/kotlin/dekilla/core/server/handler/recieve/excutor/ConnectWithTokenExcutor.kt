@@ -5,6 +5,7 @@ import dekilla.core.container.ServerContainer
 import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.SockRepository
+import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.context.ApplicationContext
@@ -29,14 +30,12 @@ class ConnectWithTokenExcutor : ServerRecieveExcutor {
                 "$requesterToken#$targetToken",
                 null
             )
-            
+
             try {
                 socketUtil.send(targetSocket.socket, askMessage)
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
-
         } else {
             val failedMessage: SockDto = SockDto(
                 "CONNECT_WITH_TOKEN_FAILD",

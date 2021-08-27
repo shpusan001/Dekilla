@@ -27,6 +27,6 @@ class DefaultServerSocketExceptionHandler : ServerSocketExceptionHandler {
         dataSendPermissionRepository.remove(sockId)
 
         wrappedSocket.socket.close()
-        DekillaLog.log("${sockId} 와의 연결이 끊어졌습니다.")
+        DekillaLog.log("Disconnected from [${sockId}]")
     }
 }

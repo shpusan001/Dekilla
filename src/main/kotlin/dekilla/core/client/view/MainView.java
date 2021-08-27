@@ -1,19 +1,14 @@
 package dekilla.core.client.view;
 
 import dekilla.core.client.ClientManager;
-import dekilla.core.client.file.FileController;
 import dekilla.core.container.ClientContainer;
 import dekilla.core.domain.SockDto;
 import dekilla.core.util.socket.WrappedSocket;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.net.Socket;
 
 public class MainView {
     private JPanel container;
@@ -28,8 +23,9 @@ public class MainView {
     private JButton Bu_upPath;
     private JLabel La_targetToken;
     private JTextField Tf_targetToken;
-    private JTextPane Tp_status;
     private JButton Bu_connect;
+    private JTextArea Ta_status;
+    private JScrollPane Js_status;
 
     private ClientManager clientManager;
 
@@ -112,5 +108,13 @@ public class MainView {
 
     public JTextField getTf_targetToken() {
         return Tf_targetToken;
+    }
+
+    public JTextArea getTa_status() {
+        return Ta_status;
+    }
+
+    public JScrollPane getJs_status() {
+        return Js_status;
     }
 }

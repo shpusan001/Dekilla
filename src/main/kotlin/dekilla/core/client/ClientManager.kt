@@ -21,7 +21,6 @@ import java.io.File
 import java.io.Serializable
 import java.net.Socket
 
-@Controller
 class ClientManager {
 
     companion object {
@@ -39,15 +38,10 @@ class ClientManager {
 
     private val socketUtil: SocketUtil
     private val clientSocketExceptionHandler: ClientSocketExceptionHandler
-    private val fileRecieveProcessingExcutor: FileRecieveProcessingExcutor
-    private val fileSendProcessingExcutor: FileSendProcessingExcutor
 
-    @Autowired
     constructor() {
         this.socketUtil = UtilConatiner.socketUtil()
         this.clientSocketExceptionHandler = ClientContainer.clientSocketExceptionHandler()
-        this.fileRecieveProcessingExcutor = UtilConatiner.fileRecieveProcessingExcutor()
-        this.fileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
     }
 
     fun connect(): WrappedSocket? {
@@ -63,7 +57,6 @@ class ClientManager {
                 return wrappedSocket
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             clientSocketExceptionHandler.connectionFaild()
         }
         return null
@@ -86,13 +79,5 @@ class ClientManager {
 
     fun sendData(sockDto: SockDto) {
         socketUtil.send(socket, sockDto)
-    }
-
-    fun sendFile(file: File) {
-        socketUtil.sendFile(socket, file, fileSendProcessingExcutor)
-    }
-
-    fun recieveFile(file: File) {
-        socketUtil.sendFile(socket, file, fileRecieveProcessingExcutor)
     }
 }

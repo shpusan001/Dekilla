@@ -6,6 +6,6 @@ import javax.swing.JOptionPane
 class ConnectWithTokenNoExcutor : ClientRecieveExcutor {
 
     override fun excute(sockDto: SockDto) {
-        JOptionPane.showMessageDialog(null, "연결이 거부당했습니다.")
+        JOptionPane.showMessageDialog(null, "Connection refused.")
     }
 }

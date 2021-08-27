@@ -20,6 +20,6 @@ class ConnectWithTokenYesExcutor : ClientRecieveExcutor {
         val targetId: String = sockDto.data
         clientManager.connectedId = targetId
 
-        JOptionPane.showMessageDialog(null, "${targetId} 와 연결되었습니다");
+        JOptionPane.showMessageDialog(null, "Link to ${targetId}")
     }
 }

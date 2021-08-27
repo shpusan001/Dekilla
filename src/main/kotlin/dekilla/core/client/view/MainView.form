@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="container" layout-manager="GridLayoutManager" row-count="8" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="25">
     <margin top="20" left="20" bottom="20" right="20"/>
     <constraints>
-      <xy x="20" y="20" width="662" height="611"/>
+      <xy x="20" y="20" width="712" height="711"/>
     </constraints>
     <properties>
       <background color="-5519671"/>
@@ -144,18 +144,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="3223d" class="javax.swing.JTextPane" binding="Tp_status">
-        <constraints>
-          <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="150"/>
-            <preferred-size width="150" height="150"/>
-          </grid>
-        </constraints>
-        <properties>
-          <editable value="false"/>
-          <font name="Arial" size="14" style="0"/>
-        </properties>
-      </component>
       <component id="9f928" class="javax.swing.JButton" binding="Bu_send">
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -175,6 +163,24 @@
           <text value="connect"/>
         </properties>
       </component>
+      <scrollpane id="93707" binding="Js_status">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="100"/>
+            <preferred-size width="-1" height="200"/>
+          </grid>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="63857" class="javax.swing.JTextArea" binding="Ta_status">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>

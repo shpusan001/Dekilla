@@ -6,6 +6,7 @@ import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.DataSendPermissionRepository
 import dekilla.core.server.repository.SockRepository
+import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.context.ApplicationContext
@@ -35,5 +36,7 @@ class ConnectWithTokenAskYesExcutor : ServerRecieveExcutor {
         )
 
         socketUtil.send(requestSocket.socket, yesMessage)
+
+        DekillaLog.log("[Linked] To: [${requesterToken}] <===> [${targetToken}]")
     }
 }

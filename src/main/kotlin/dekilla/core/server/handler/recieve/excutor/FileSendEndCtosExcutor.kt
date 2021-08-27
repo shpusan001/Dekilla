@@ -4,6 +4,7 @@ import dekilla.core.container.ServerContainer
 import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.SockRepository
+import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
 
@@ -29,5 +30,8 @@ class FileSendEndCtosExcutor : ServerRecieveExcutor {
         )
 
         socketUtil.send(targetSocket.socket, fileSendEndMessage)
+        DekillaLog.log(
+            "[Sending end] To: [${requestToken}] => [${targetToken}]"
+        )
     }
 }
