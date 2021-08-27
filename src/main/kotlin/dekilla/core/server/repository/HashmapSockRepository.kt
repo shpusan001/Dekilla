@@ -4,7 +4,6 @@ import dekilla.core.util.socket.WrappedSocket
 import org.springframework.stereotype.Repository
 import java.util.concurrent.CopyOnWriteArrayList
 
-@Repository
 class HashmapSockRepository : SockRepository {
 
     private val mapRepository = HashMap<String, WrappedSocket>()

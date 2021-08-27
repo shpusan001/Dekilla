@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 import java.security.SecureRandom
 import java.util.*
 
-@Service
+
 class NumberIdGenerator : IdGenerator {
     override fun generate(): String {
         val symbols: String = "0123456789"

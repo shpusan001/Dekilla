@@ -4,7 +4,7 @@ import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.stereotype.Service
 
-@Service
+
 class DefaultClientSocketExceptionHandler : ClientSocketExceptionHandler {
 
     override fun connectionFaild() {

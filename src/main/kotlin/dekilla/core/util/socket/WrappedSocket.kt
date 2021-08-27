@@ -1,5 +1,6 @@
 package dekilla.core.util.socket
 
+import java.io.Serializable
 import java.net.Socket
 
 class WrappedSocket {

@@ -5,12 +5,11 @@ import dekilla.core.client.handler.exception.ClientSocketExceptionHandler
 import dekilla.core.client.handler.recieve.excutor.ClientRecieveExcutor
 import dekilla.core.client.runnable.ClientRecieveRunnable
 import dekilla.core.client.runnable.DefaultClientRecieveRunnable
+import dekilla.core.container.ClientContainer
+import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.util.Log.DekillaLog
-import dekilla.core.util.socket.FileRecieveProcessingExcutor
-import dekilla.core.util.socket.FileSendProcessingExcutor
-import dekilla.core.util.socket.SocketUtil
-import dekilla.core.util.socket.WrappedSocket
+import dekilla.core.util.socket.*
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.getBean
 import org.springframework.context.ApplicationContext
@@ -19,6 +18,7 @@ import org.springframework.stereotype.Controller
 import org.springframework.stereotype.Service
 import java.awt.image.WritableRaster
 import java.io.File
+import java.io.Serializable
 import java.net.Socket
 
 @Controller
@@ -30,10 +30,9 @@ class ClientManager {
     }
 
     private lateinit var socket: Socket
-    private var wrappedSocket: WrappedSocket? = null
 
-    private var targetSocket: Socket? = null
-    private var targetWrappedSocket: WrappedSocket? = null
+    var wrappedSocket: WrappedSocket? = null
+    var connectedId: String = ""
 
     private lateinit var recieveThread: Thread
     private lateinit var recieveRunnable: ClientRecieveRunnable
@@ -44,16 +43,11 @@ class ClientManager {
     private val fileSendProcessingExcutor: FileSendProcessingExcutor
 
     @Autowired
-    constructor(
-        socketUtil: SocketUtil,
-        clientSocketExceptionHandler: ClientSocketExceptionHandler,
-        fileRecieveProcessingExcutor: FileRecieveProcessingExcutor,
-        fileSendProcessingExcutor: FileSendProcessingExcutor
-    ) {
-        this.socketUtil = socketUtil
-        this.clientSocketExceptionHandler = clientSocketExceptionHandler
-        this.fileRecieveProcessingExcutor = fileRecieveProcessingExcutor
-        this.fileSendProcessingExcutor = fileSendProcessingExcutor
+    constructor() {
+        this.socketUtil = UtilConatiner.socketUtil()
+        this.clientSocketExceptionHandler = ClientContainer.clientSocketExceptionHandler()
+        this.fileRecieveProcessingExcutor = UtilConatiner.fileRecieveProcessingExcutor()
+        this.fileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
     }
 
     fun connect(): WrappedSocket? {
@@ -69,6 +63,7 @@ class ClientManager {
                 return wrappedSocket
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             clientSocketExceptionHandler.connectionFaild()
         }
         return null

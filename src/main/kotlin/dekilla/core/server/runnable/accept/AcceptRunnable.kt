@@ -1,3 +1,7 @@
 package dekilla.core.server.runnable.accept
 
-interface AcceptRunnable : Runnable {}
+import java.net.ServerSocket
+
+interface AcceptRunnable : Runnable {
+    fun setServerSocket(serverSocket: ServerSocket)
+}

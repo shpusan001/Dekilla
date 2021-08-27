@@ -1,10 +1,13 @@
 package dekilla.core.server.runnable.recieve
 
 import dekilla.core.AppConfig
+import dekilla.core.container.ServerContainer
+import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.SockRepository
 import dekilla.core.server.handler.exception.ServerSocketExceptionHandler
 import dekilla.core.server.handler.recieve.ServerRecieveHandler
+import dekilla.core.server.repository.HashmapSockRepository
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
 import org.springframework.context.ApplicationContext
@@ -22,21 +25,13 @@ class DefaultServerRecieveRunnable : ServerRecieveRunnable {
     private val serverRecieveHandler: ServerRecieveHandler
     private val serverSocketExceptionHandler: ServerSocketExceptionHandler
 
-    constructor(sockRepository: SockRepository) {
-        this.sockRepository = sockRepository
+    constructor() {
+        sockRepository = ServerContainer.sockRepository()
+        socketUtil = UtilConatiner.socketUtil()
+        serverRecieveHandler = ServerContainer.serverRecieveHandler()
+        serverSocketExceptionHandler = ServerContainer.serverSocketExceptionHandler()
+
         this.sockList = sockRepository.getList()
-
-        val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
-
-        socketUtil = ac.getBean(SocketUtil::class.java)
-        serverRecieveHandler = ac.getBean(
-            "defaultServerRecieveHandler",
-            ServerRecieveHandler::class.java
-        )
-        serverSocketExceptionHandler = ac.getBean(
-            "defaultServerSocketExceptionHandler",
-            ServerSocketExceptionHandler::class.java
-        )
     }
 
     override fun run() {
@@ -64,6 +59,7 @@ class DefaultServerRecieveRunnable : ServerRecieveRunnable {
             try {
                 val sockDto: SockDto = socketUtil.recieve(wrappedSocket.socket) as SockDto
                 serverRecieveHandler.process(sockDto)
+                recieveThreadMap.remove(wrappedSocket)
                 if (sockRepository.isContain(wrappedSocket)) {
                     sockList.add(wrappedSocket)
                 }

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import java.io.*
 import java.net.Socket
 
-@Service
 class SocketUtil {
 
     private val DEFAULT_BUFFER_SIZE: Int = 10000
@@ -67,6 +66,7 @@ class SocketUtil {
             throw e
         } finally {
             fpl.end()
+            fileInputStream.close()
         }
     }
 
@@ -96,6 +96,7 @@ class SocketUtil {
             throw  e
         } finally {
             fpl.end()
+            fileOutputStream.close()
         }
     }
 }

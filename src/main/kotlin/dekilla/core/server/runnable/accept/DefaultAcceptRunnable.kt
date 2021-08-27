@@ -1,32 +1,32 @@
 package dekilla.core.server.runnable.accept
 
-import dekilla.core.AppConfig
+import dekilla.core.container.ServerContainer
+import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
 import dekilla.core.server.repository.SockRepository
 import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.generator.IdGenerator
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
-import org.springframework.context.ApplicationContext
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
+import org.springframework.stereotype.Component
 import java.net.ServerSocket
 import java.net.Socket
 
+@Component
 class DefaultAcceptRunnable : AcceptRunnable {
 
-    private val serverSocket: ServerSocket
-    private val sockRepository: SockRepository
+    private lateinit var serverSocket: ServerSocket
+    private lateinit var sockRepository: SockRepository
     private lateinit var idGenerator: IdGenerator
     private lateinit var socketUtil: SocketUtil
 
-    constructor(serverSocket: ServerSocket, sockRepository: SockRepository) {
+    override fun setServerSocket(serverSocket: ServerSocket) {
         this.serverSocket = serverSocket
-        this.sockRepository = sockRepository
-
-        val ac: ApplicationContext = AnnotationConfigApplicationContext(AppConfig::class.java)
-        idGenerator = ac.getBean("numberIdGenerator", IdGenerator::class.java)
-        socketUtil = ac.getBean(SocketUtil::class.java)
+        this.sockRepository = ServerContainer.sockRepository()
+        this.idGenerator = UtilConatiner.idGenerator()
+        this.socketUtil = UtilConatiner.socketUtil()
     }
+
 
     override fun run() {
         while (!Thread.interrupted()) {
