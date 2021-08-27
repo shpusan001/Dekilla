@@ -96,7 +96,7 @@ public class MainView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    ClientContainer.Companion.fileController().sendFile();
+                    ClientContainer.Companion.fileController().sendPermissionRequest();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

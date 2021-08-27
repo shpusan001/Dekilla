@@ -1,5 +1,6 @@
 package dekilla.core.server.handler.recieve
 
+import dekilla.core.client.handler.recieve.excutor.FileSendPermissionYesExcutor
 import dekilla.core.domain.SockDto
 import dekilla.core.server.handler.recieve.excutor.*
 import org.springframework.stereotype.Service
@@ -17,6 +18,7 @@ class DefaultServerRecieveHandler : ServerRecieveHandler {
         commandRepository.put("FILE_SEND_CTOS", FileSendCtosExcutor())
         commandRepository.put("FILE_SEND_START_CTOS", FileSendStartCtosExcutor())
         commandRepository.put("FILE_SEND_END_CTOS", FileSendEndCtosExcutor())
+        commandRepository.put("FILE_SEND_PERMISSION_CTOS", FileSendPermissionExcutor())
     }
 
     override fun addCommand(command: String, excutor: ServerRecieveExcutor) {

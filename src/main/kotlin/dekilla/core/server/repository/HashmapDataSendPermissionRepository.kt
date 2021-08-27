@@ -1,6 +1,9 @@
 package dekilla.core.server.repository
 
+import dekilla.core.container.ServerContainer
+
 class HashmapDataSendPermissionRepository : DataSendPermissionRepository {
+
 
     val sendMap: HashMap<String, String> = HashMap()
     val recieveMap: HashMap<String, String> = HashMap()
@@ -21,5 +24,9 @@ class HashmapDataSendPermissionRepository : DataSendPermissionRepository {
     override fun remove(senderId: String) {
         recieveMap.remove(sendMap.get(senderId))
         sendMap.remove(senderId)
+    }
+
+    override fun authorization(senderId: String, recieverId: String): Boolean {
+        return sendMap.get(senderId) == recieverId
     }
 }

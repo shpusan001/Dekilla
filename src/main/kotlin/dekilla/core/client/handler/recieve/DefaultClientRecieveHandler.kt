@@ -16,6 +16,8 @@ class DefaultClientRecieveHandler : ClientRecieveHandler {
         commandRepository.put("FILE_SEND_STOC", FileSendStoCExcutor())
         commandRepository.put("FILE_SEND_START_STOC", FileSendStartStocExcutor())
         commandRepository.put("FILE_SEND_END_STOC", FileSendEndStocExcutor())
+        commandRepository.put("FILE_SEND_PERMISSION_YES_STOC", FileSendPermissionYesExcutor())
+        commandRepository.put("FILE_SEND_PERMISSION_NO_STOC", FileSendPermissionNoExcutor())
     }
 
     override fun addCommand(command: String, excutor: ClientRecieveExcutor) {

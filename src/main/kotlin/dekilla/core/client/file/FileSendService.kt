@@ -18,9 +18,32 @@ public class FileSendService {
     private val mainView: MainView = ViewContainer.mainView()
     private val fpl: FileSendProcessingExcutor = UtilConatiner.fileSendProcessingExcutor()
 
+    fun fileSendPermissionRequest() {
+        val sockId: String = clientManager.wrappedSocket!!.id
+        val targetToken: String = clientManager.connectedId
+
+        try {
+            fpl.start()
+
+            val sockDto: SockDto = SockDto(
+                "FILE_SEND_PERMISSION_CTOS",
+                "#",
+                "${sockId}#${targetToken}",
+                null
+            )
+
+            clientManager.sendData(sockDto)
+
+        } catch (e: IOException) {
+            throw e
+        } finally {
+            fpl.end()
+        }
+    }
+
     fun startSendFile(file: File) {
         val sockId: String = clientManager.wrappedSocket!!.id
-        val targetToken: String = mainView.tf_targetToken.text
+        val targetToken: String = clientManager.connectedId
 
         try {
             fpl.start()
