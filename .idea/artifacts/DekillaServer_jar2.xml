@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="DekillaServer:jar2">
+  <artifact type="jar" build-on-make="true" name="DekillaServer:jar2">
     <output-path>$PROJECT_DIR$/out/artifacts/DekillaServer_jar2</output-path>
     <root id="archive" name="Dekilla.jar">
       <element id="directory" name="META-INF">

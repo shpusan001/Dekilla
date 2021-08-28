@@ -6,6 +6,7 @@ import dekilla.core.domain.SockDto;
 import dekilla.core.util.socket.WrappedSocket;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -27,6 +28,7 @@ public class MainView {
     private JTextArea Ta_status;
     private JScrollPane Js_status;
     private JButton bu_statusClear;
+    private JLabel La_logo;
 
     private ClientManager clientManager;
 
@@ -42,6 +44,13 @@ public class MainView {
         frame.setVisible(true);
 
         Tf_myToken.setText(token);
+
+        // 프레임(자바 화면) 크기
+        Dimension frameSize = frame.getSize();
+        // 모니터 크기
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        // (모니터화면 가로 - 프레임화면 가로) / 2, (모니터화면 세로 - 프레임화면 세로) / 2
+        frame.setLocation((screenSize.width - frameSize.width) / 2, (screenSize.height - frameSize.height) / 2);
 
         WrappedSocket requesterSocket = clientManager.getWrappedSocket();
 

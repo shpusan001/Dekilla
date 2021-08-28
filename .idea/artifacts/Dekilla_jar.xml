@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="Dekilla:jar">
+  <artifact type="jar" build-on-make="true" name="Dekilla:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/Dekilla_jar</output-path>
     <root id="archive" name="Dekilla.jar">
       <element id="directory" name="META-INF">
@@ -22,6 +22,7 @@
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.5.10/6b84d926e28493be69daf673e40076f89492ef7/kotlin-stdlib-common-1.5.10.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot/2.5.3/e25d2de9e166a8bbbfae633fc03220ab36ac19a9/spring-boot-2.5.3.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-jcl/5.3.9/622eb12c98768b6d3acc71ce06bac8b332607a10/spring-jcl-5.3.9.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$PROJECT_DIR$/src/main/resources" />
     </root>
   </artifact>
 </component>
