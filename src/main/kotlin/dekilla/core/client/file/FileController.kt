@@ -29,9 +29,11 @@ class FileController {
     }
 
     fun sendFile() {
-        fileSendService.startSendFile(currentFile!!)
-        fileSendService.sendFile(currentFile!!)
-        fileSendService.endSendFile()
+        Thread(Runnable {
+            fileSendService.startSendFile(currentFile!!)
+            fileSendService.sendFile(currentFile!!)
+            fileSendService.endSendFile()
+        }).start()
     }
 
     fun sendFile(file: File) {
