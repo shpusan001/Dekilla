@@ -54,9 +54,9 @@ Java 기반의 TCP 소켓을 활용한 파일 전송 프로그램 입니다. 서
     3. 연결 성공  
        <img width="197" alt="dekillaclient04" src="https://user-images.githubusercontent.com/35298140/131213485-799e108b-c295-40fd-8943-adde027f272a.PNG">
 + 파일 전송
-    1. 필요한 요소를 모두 설정하고 sendFile을 누른다
+    1. 필요한 요소를 모두 설정하고 sendFile을 누른다  
        <img width="530" alt="dekillaclient05" src="https://user-images.githubusercontent.com/35298140/131213512-5da4b0b8-0a87-4b91-8cf7-8adfaa14f23c.PNG">
-    2. 파일 전송 성공
+    2. 파일 전송 성공  
        <img width="604" alt="dekillaclient06" src="https://user-images.githubusercontent.com/35298140/131213579-00614dbc-b59e-4b82-b1d0-afaf743599ad.PNG">
 
   > '내 클라이언트'는 연결한 대상에게 파일을 전송할 수 있다. 연결된 '상대 클라이언트'는
