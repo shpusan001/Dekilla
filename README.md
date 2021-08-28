@@ -1,5 +1,5 @@
 <p align="center">
-<img width=500 src="https://user-images.githubusercontent.com/35298140/131207077-d68d8385-a13d-408f-8095-26707f540ca2.png"></img>
+<img width=475 src="https://user-images.githubusercontent.com/35298140/131207077-d68d8385-a13d-408f-8095-26707f540ca2.png"></img>
 </p>
 
 ---
@@ -15,9 +15,11 @@ Java 기반의 TCP 소켓을 활용한 파일 전송 프로그램 입니다. 서
 
 클릭하면 다운로드 페이지로 이동합니다
 
-+ [서버프로그램](https://drive.google.com/file/d/14lgGqfvyiWtYuK6xdmy6ocGUz4f0eF12/view?usp=sharing)
-+ [클라이언트 프로그램](https://drive.google.com/file/d/1XishkOJpJb8fVsXMhYbBy5uqh5CkmHsj/view?usp=sharing)
++ [서버프로그램 (jar)](https://drive.google.com/file/d/14lgGqfvyiWtYuK6xdmy6ocGUz4f0eF12/view?usp=sharing)
++ [클라이언트 프로그램 (jar)](https://drive.google.com/file/d/1XishkOJpJb8fVsXMhYbBy5uqh5CkmHsj/view?usp=sharing)
++ [클라이언트 프로그램 (exe)](https://drive.google.com/file/d/1T_G_AjYp7dSxoL--q3RcPPNKBw2vRQlf/view?usp=sharing)
 
+> Java 11버전 이상에서 실행됩니다.
 ---
 
 ## 사용법
