@@ -9,7 +9,7 @@ import javax.swing.JOptionPane
 class DefaultClientSocketExceptionHandler : ClientSocketExceptionHandler {
 
     override fun connectionFaild() {
-        JOptionPane.showMessageDialog(null, "Failed to connect to server. Restart Dekilla.")
+        JOptionPane.showMessageDialog(null, "Failed to connect to server.")
     }
 
     override fun connectionLost(wrappedSocket: WrappedSocket) {
@@ -17,5 +17,9 @@ class DefaultClientSocketExceptionHandler : ClientSocketExceptionHandler {
             null,
             "My token: ${wrappedSocket.id}, Disconnected from the server. Restart Dekilla."
         )
+    }
+
+    override fun ipInputNotNumber() {
+        JOptionPane.showMessageDialog(null, "Enter number in the Ip.")
     }
 }

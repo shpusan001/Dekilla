@@ -24,8 +24,8 @@ import java.net.Socket
 class ClientManager {
 
     companion object {
-        val ip: String = "xxx.xxx.xxx.xxx"
-        val port: Int = 33333
+        var ip: String = "xxx.xxx.xxx.xxx"
+        var port: Int = 33333
     }
 
     private lateinit var socket: Socket
@@ -57,8 +57,8 @@ class ClientManager {
                 return wrappedSocket
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             clientSocketExceptionHandler.connectionFaild()
+            throw e
         }
         return null
     }

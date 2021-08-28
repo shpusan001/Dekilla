@@ -34,14 +34,14 @@ public class MainView {
         this.clientManager = ClientContainer.Companion.clientManager();
     }
 
-    public void create() {
+    public void create(String token) {
         JFrame frame = new JFrame("Dekilla");
         frame.setContentPane(container);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
 
-        networkInit();
+        Tf_myToken.setText(token);
 
         WrappedSocket requesterSocket = clientManager.getWrappedSocket();
 
@@ -106,12 +106,6 @@ public class MainView {
                 Ta_status.setText("");
             }
         });
-    }
-
-    public void networkInit() {
-        WrappedSocket wrappedSocket = clientManager.connect();
-        Tf_myToken.setText(wrappedSocket.getId());
-        clientManager.processing();
     }
 
     public JTextField getTf_targetToken() {

@@ -6,6 +6,10 @@ import dekilla.core.server.ServerManager
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Component
+import java.io.BufferedInputStream
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
 
 
 class ServerDirve {
@@ -13,8 +17,25 @@ class ServerDirve {
         @JvmStatic
         fun main(args: Array<String>) {
             val serverManager: ServerManager = ServerContainer.serverManager()
+            val br: BufferedReader = BufferedReader(InputStreamReader(System.`in`))
 
-            serverManager.bind(33333)
+            while (true) {
+                try {
+                    print("Setting port (0~65535):")
+                    var port: Int = br.readLine().toInt()
+
+                    if (!(port in 0..65535)) throw Exception()
+
+                    ServerManager.port = port
+                    break
+                } catch (e: Exception) {
+                    println("Wrong setting")
+                    continue
+                }
+            }
+
+            println("Dekilla server start")
+            serverManager.bind(ServerManager.port)
             serverManager.accept()
             serverManager.processing()
         }

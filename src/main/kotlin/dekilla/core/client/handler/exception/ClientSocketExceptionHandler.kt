@@ -6,4 +6,5 @@ interface ClientSocketExceptionHandler {
 
     fun connectionFaild()
     fun connectionLost(wrappedSocket: WrappedSocket)
+    fun ipInputNotNumber()
 }
