@@ -15,11 +15,19 @@ Kotlin 기반의 TCP 소켓을 활용한 파일 전송 프로그램 입니다. �
 
 클릭하면 다운로드 페이지로 이동합니다
 
-+ [서버프로그램 (jar)](https://drive.google.com/file/d/14lgGqfvyiWtYuK6xdmy6ocGUz4f0eF12/view?usp=sharing)
-+ [클라이언트 프로그램 (jar)](https://drive.google.com/file/d/1XishkOJpJb8fVsXMhYbBy5uqh5CkmHsj/view?usp=sharing)
-+ [클라이언트 프로그램 (exe)](https://drive.google.com/file/d/1T_G_AjYp7dSxoL--q3RcPPNKBw2vRQlf/view?usp=sharing)
++ [서버프로그램 (jar)](https://drive.google.com/file/d/1OvbpPHu0QUtDIFkL74EKxroOpeQkS9CD/view?usp=sharing)
++ [클라이언트 프로그램 (jar)](https://drive.google.com/file/d/16ndzBfQio9Lr0kct2X1kPdw4hDMq6aSf/view?usp=sharing)
++ [클라이언트 프로그램 (exe)](https://drive.google.com/file/d/1_Z1yycok_xut8fdyaoxYIHjjFkfUVz2o/view?usp=sharing)
 
 > Java 11버전 이상에서 실행됩니다.
+
+2021-08-29(일)
+
++ 한 클라이언트에서 두개이상의 다운로드가 일어나면 종료되는 문제 수정
++ 한 클라이언트에서 다른 클라이언트로 파일을 전송하고 있을 때, 도중에 둘중 하나의 클라이언트가 종료될 때 비정상처리 되는 문제 수정
++ 클라이언트 UI 중 'sendFile' -> 'Send file' 수정
++ 파일 전송 버퍼 크기 4배 증가 ( 8kbyte -> 32kbyte )
+
 ---
 
 ## 사용법
@@ -56,13 +64,13 @@ Kotlin 기반의 TCP 소켓을 활용한 파일 전송 프로그램 입니다. �
     3. 연결 성공  
        <img width="197" alt="dekillaclient04" src="https://user-images.githubusercontent.com/35298140/131213485-799e108b-c295-40fd-8943-adde027f272a.PNG">
 + 파일 전송
-    1. 필요한 요소를 모두 설정하고 sendFile을 누른다  
+    1. 필요한 요소를 모두 설정하고 Send file을 누른다  
        <img width="530" alt="dekillaclient05" src="https://user-images.githubusercontent.com/35298140/131213512-5da4b0b8-0a87-4b91-8cf7-8adfaa14f23c.PNG">
     2. 파일 전송 성공  
        <img width="604" alt="dekillaclient06" src="https://user-images.githubusercontent.com/35298140/131213579-00614dbc-b59e-4b82-b1d0-afaf743599ad.PNG">
 
   > '내 클라이언트'는 연결한 대상에게 파일을 전송할 수 있다. 연결된 '상대 클라이언트'는
-  > '본 클라이언트'로 파일을 전송할 수 없다. 상대가 나에게 파일을 전송하고 싶다면, 상대도
+  > '내 클라이언트'로 파일을 전송할 수 없다. 상대가 나에게 파일을 전송하고 싶다면, 상대도
   > 나에게 연결요청을 해야한다.
 
 ---

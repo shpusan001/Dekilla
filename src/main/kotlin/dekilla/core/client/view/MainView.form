@@ -194,7 +194,7 @@
         <properties>
           <background color="-3566537"/>
           <font name="Arial" size="16" style="1"/>
-          <text value="sendFile"/>
+          <text value="Send file"/>
         </properties>
       </component>
       <component id="afcb2" class="javax.swing.JLabel" binding="La_logo">
