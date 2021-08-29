@@ -13,10 +13,14 @@ class FileSendStartStocExcutor : ClientRecieveExcutor {
 
     override fun excute(sockDto: SockDto) {
 
-        val fileName: String = sockDto.data.split(sockDto.seperator)[0]
-        val fileSize: String = sockDto.data.split(sockDto.seperator)[1]
+        val datas = sockDto.data.split(sockDto.seperator)
 
-        fileRecieveService.fileRecieveStart(fileName, fileSize)
+        val fileName: String = datas[0]
+        val fileSize: String = datas[1]
+        val requesterId: String = datas[2]
+
+
+        fileRecieveService.fileRecieveStart(fileName, fileSize, requesterId)
 
         fileRecieveProcessingExcutor.start(fileName, fileSize.toLong())
     }

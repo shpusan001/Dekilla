@@ -51,6 +51,9 @@ public class FileSendService {
 
             clientManager.sendData(sockDto)
 
+            ClientContainer.fileController().isSending = true
+            ClientContainer.fileController().isLinked = true
+
         } catch (e: IOException) {
             throw e
         }
@@ -65,7 +68,7 @@ public class FileSendService {
 
         val fileSize: Long = file.length()
         var totalReadBytes: Long = 0
-        var buffer: ByteArray? = ByteArray(DEFAULT_BUFFER_SIZE)
+        var buffer: ByteArray? = ByteArray(4 * DEFAULT_BUFFER_SIZE)
         var readBytes: Int
 
         try {
@@ -80,6 +83,8 @@ public class FileSendService {
                     "${sockId}#${targetToken}",
                     buffer
                 )
+
+                if (!ClientContainer.fileController().isLinked) break
 
                 clientManager.sendData(sockDto)
 
@@ -108,6 +113,8 @@ public class FileSendService {
 
             clientManager.sendData(sockDto)
 
+            ClientContainer.fileController().isSending = false
+            ClientContainer.fileController().isLinked = false
         } catch (e: IOException) {
             throw e
         } finally {

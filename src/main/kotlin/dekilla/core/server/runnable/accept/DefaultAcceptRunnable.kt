@@ -34,7 +34,7 @@ class DefaultAcceptRunnable : AcceptRunnable {
 
             if (!Thread.interrupted()) {
                 val sockId: String = idGenerator.generate()
-                DekillaLog.log("[${sockId}] is connect")
+                DekillaLog.log("[${sockId}] is connected")
                 val wrappedSocket = WrappedSocket(socket, sockId)
                 sockRepository.add(sockId, wrappedSocket)
 

@@ -9,9 +9,9 @@ import dekilla.core.util.socket.FileRecieveProcessingExcutor
 import java.awt.Desktop
 import java.io.File
 import java.io.IOException
+import javax.swing.JOptionPane
 
-
-class FileSendEndStocExcutor : ClientRecieveExcutor {
+class FileSendEndFaildExcutor : ClientRecieveExcutor {
 
     val fileRecieveService: FileRecieveService = ClientContainer.fileRecieveService()
     val fileRecieveProcessingExcutor: FileRecieveProcessingExcutor = UtilConatiner.fileRecieveProcessingExcutor()
@@ -22,19 +22,8 @@ class FileSendEndStocExcutor : ClientRecieveExcutor {
         val recieveService: RecieveService = fileRecieveService.getRecieveService(requesterId)!!
 
         fileRecieveProcessingExcutor.end(recieveService.fileName)
-
-        val foler: File = File(recieveService.folderPath)
-
-        var desktop: Desktop? = null
-        if (Desktop.isDesktopSupported()) {
-            desktop = Desktop.getDesktop()
-        }
-
-        try {
-            desktop!!.open(foler)
-        } catch (e: IOException) {
-        }
-
         fileRecieveService.fileRecieveEnd(requesterId)
+
+        JOptionPane.showMessageDialog(null, "Disconnected with [${requesterId}]")
     }
 }

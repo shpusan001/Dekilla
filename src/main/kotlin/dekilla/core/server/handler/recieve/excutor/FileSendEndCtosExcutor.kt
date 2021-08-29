@@ -16,22 +16,23 @@ class FileSendEndCtosExcutor : ServerRecieveExcutor {
 
         val dataArray: List<String> = sockDto.data.split(sockDto.seperator)
 
-        val requestToken: String = dataArray.get(0)
+        val requesterToken: String = dataArray.get(0)
         val targetToken: String = dataArray.get(1)
 
-        val targetSocket: WrappedSocket = sockRepository.get(targetToken)!!
+        val targetSocket: WrappedSocket? = sockRepository.get(targetToken)
 
+        if (targetSocket != null) {
+            val fileSendEndMessage: SockDto = SockDto(
+                "FILE_SEND_END_STOC",
+                "#",
+                "${requesterToken}",
+                null
+            )
 
-        val fileSendEndMessage: SockDto = SockDto(
-            "FILE_SEND_END_STOC",
-            "#",
-            "",
-            null
-        )
-
-        socketUtil.send(targetSocket.socket, fileSendEndMessage)
-        DekillaLog.log(
-            "[Sending end] To: [${requestToken}] => [${targetToken}]"
-        )
+            socketUtil.send(targetSocket.socket, fileSendEndMessage)
+            DekillaLog.log(
+                "[Sending end] To: [${requesterToken}] => [${targetToken}]"
+            )
+        }
     }
 }

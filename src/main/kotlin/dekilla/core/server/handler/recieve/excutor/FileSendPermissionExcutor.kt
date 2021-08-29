@@ -18,12 +18,12 @@ class FileSendPermissionExcutor : ServerRecieveExcutor {
 
         val dataArray: List<String> = sockDto.data.split(sockDto.seperator)
 
-        val requestToken: String = dataArray.get(0)
+        val requesterToken: String = dataArray.get(0)
         val targetToken: String = dataArray.get(1)
 
-        val requestSocket: WrappedSocket = sockRepository.get(requestToken)!!
+        val requestSocket: WrappedSocket = sockRepository.get(requesterToken)!!
 
-        if (dataSendPermissionRepository.authorization(requestToken, targetToken)) {
+        if (dataSendPermissionRepository.authorization(requesterToken, targetToken)) {
             val fileSendPermissionYesMessage: SockDto = SockDto(
                 "FILE_SEND_PERMISSION_YES_STOC",
                 "#",

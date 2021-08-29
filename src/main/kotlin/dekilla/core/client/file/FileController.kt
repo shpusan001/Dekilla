@@ -15,16 +15,18 @@ class FileController {
 
     var currentFile: File? = null
     var downloadFolder: File? = null
+    var isSending: Boolean = false
+    var isLinked: Boolean = false
 
     fun sendPermissionRequest() {
         if (currentFile != null) {
             if (currentFile!!.exists()) {
                 fileSendService.fileSendPermissionRequest()
             } else {
-                JOptionPane.showMessageDialog(null, "선택한 전송할 파일이 존재하지 않습니다.");
+                JOptionPane.showMessageDialog(null, "The selected file to transfer does not exist.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "전송할 파일이 선택하지 않았습니다")
+            JOptionPane.showMessageDialog(null, "No file selected for transfer.")
         }
     }
 

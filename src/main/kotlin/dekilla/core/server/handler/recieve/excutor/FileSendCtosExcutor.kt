@@ -14,22 +14,27 @@ class FileSendCtosExcutor : ServerRecieveExcutor {
             val sockRepository: SockRepository = ServerContainer.sockRepository()
             val socketUtil: SocketUtil = UtilConatiner.socketUtil()
 
-            val requestToken: String = sockDto.data.split(sockDto.seperator)[0]
+            val requesterToken: String = sockDto.data.split(sockDto.seperator)[0]
             val targetToken: String = sockDto.data.split(sockDto.seperator)[1]
-            
-            val targetSocket: WrappedSocket = sockRepository.get(targetToken)!!
 
-            val fileData: ByteArray = sockDto.obj as ByteArray
+            val targetSocket: WrappedSocket? = sockRepository.get(targetToken)
 
+            if (targetSocket != null) {
+                val fileData: ByteArray = sockDto.obj as ByteArray
+                val fileSendMessage: SockDto = SockDto(
+                    "FILE_SEND_STOC",
+                    "#",
+                    requesterToken,
+                    fileData
+                )
 
-            val fileSendMessage: SockDto = SockDto(
-                "FILE_SEND_STOC",
-                "#",
-                "",
-                fileData
-            )
-
-            socketUtil.send(targetSocket.socket, fileSendMessage)
+                synchronized(this) {
+                    try {
+                        socketUtil.send(targetSocket.socket, fileSendMessage)
+                    } catch (e: Exception) {
+                    }
+                }
+            }
 
         } catch (e: Exception) {
             e.printStackTrace()

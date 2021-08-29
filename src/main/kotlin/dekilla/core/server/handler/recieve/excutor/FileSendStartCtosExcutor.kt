@@ -17,7 +17,7 @@ class FileSendStartCtosExcutor : ServerRecieveExcutor {
 
         val dataArray: List<String> = sockDto.data.split(sockDto.seperator)
 
-        val requestToken: String = dataArray.get(0)
+        val requesterToken: String = dataArray.get(0)
         val targetToken: String = dataArray.get(1)
 
         val targetSocket: WrappedSocket = sockRepository.get(targetToken)!!
@@ -29,13 +29,13 @@ class FileSendStartCtosExcutor : ServerRecieveExcutor {
         val fileSendStartMessage: SockDto = SockDto(
             "FILE_SEND_START_STOC",
             "#",
-            "${fileName}#${fileSize}",
+            "${fileName}#${fileSize}#${requesterToken}",
             null
         )
 
         socketUtil.send(targetSocket.socket, fileSendStartMessage)
         DekillaLog.log(
-            "[Sending start] To: [${requestToken}] => [${targetToken}]" +
+            "[Sending start] To: [${requesterToken}] => [${targetToken}]" +
                     " / Filename: [${fileName}]" +
                     " / Filesize: [${fileSize}]"
         )

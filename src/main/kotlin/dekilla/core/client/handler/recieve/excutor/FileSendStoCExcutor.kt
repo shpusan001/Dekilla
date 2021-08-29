@@ -1,6 +1,7 @@
 package dekilla.core.client.handler.recieve.excutor
 
 import dekilla.core.client.file.FileRecieveService
+import dekilla.core.client.file.recieve.RecieveService
 import dekilla.core.client.view.MainView
 import dekilla.core.container.ClientContainer
 import dekilla.core.container.UtilConatiner
@@ -16,16 +17,21 @@ class FileSendStoCExcutor : ClientRecieveExcutor {
     val fileRecieveProcessingExcutor: FileRecieveProcessingExcutor = UtilConatiner.fileRecieveProcessingExcutor()
 
     override fun excute(sockDto: SockDto) {
-        val fileOutputStream: FileOutputStream = fileRecieveService.fileOutputStream!!
+
+        val requesterId: String = sockDto.data
+
+
+        val recieveService: RecieveService = fileRecieveService.getRecieveService(requesterId)!!
 
         val data: ByteArray = sockDto.obj as ByteArray
-        fileOutputStream.write(data)
-        fileRecieveService.currentFileSize += data.size
+        recieveService.fileOutputStream!!.write(data)
+        recieveService.currentFileSize += data.size
 
-        val fileName: String = fileRecieveService.fileName
-        val fileSize: Long = fileRecieveService.fileSize
-        val currentFileSize: Long = fileRecieveService.currentFileSize
+        val fileName: String = recieveService.fileName
+        val fileSize: Long = recieveService.fileSize
+        val currentFileSize: Long = recieveService.currentFileSize
 
         fileRecieveProcessingExcutor.excute(fileName, data.size, currentFileSize, fileSize)
+        
     }
 }

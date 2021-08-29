@@ -101,10 +101,10 @@ public class MainView {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
+                if (ClientContainer.Companion.fileController().isSending() == false) {
                     ClientContainer.Companion.fileController().sendPermissionRequest();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                } else {
+                    JOptionPane.showMessageDialog(null, "The file is being transferred. Please try again after sending.");
                 }
             }
         });

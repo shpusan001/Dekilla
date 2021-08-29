@@ -31,7 +31,7 @@ public class HostConnectView {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-
+        
 //        ImageIcon imageIcon = new ImageIcon(this.getClass().getClassLoader().getResource("DekillaLogoSmall.png"));
 //        La_logo.setIcon(imageIcon);
 //        La_logo.setHorizontalTextPosition(JLabel.RIGHT);
