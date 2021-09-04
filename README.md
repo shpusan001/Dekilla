@@ -9,6 +9,9 @@
 Kotlin 기반의 TCP 소켓을 활용한 파일 전송 프로그램 입니다. 서버가 클라이언트에게 할당한 토큰(클라이언트 식별값)
 으로 파일 전송의 도착지를 설정합니다.
 
+## 아키텍처
+![DekiilaStructure drawio](https://user-images.githubusercontent.com/35298140/132085824-78c0d592-6806-48ec-93c7-b5794e6eef40.png)
+
 ---
 
 ## 다운로드
