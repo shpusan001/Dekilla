@@ -30,9 +30,11 @@ class DefaultServerSocketExceptionHandler : ServerSocketExceptionHandler {
     override fun connectionLost(wrappedSocket: WrappedSocket) {
         val sockId = wrappedSocket.id
 
-        //받는 클라이언트가 나갔을때
         val senderId: String? = dataSendPermissionRepository.recieveMap.get(sockId)
-        if (senderId != null) {
+        val targetId: String? = dataSendPermissionRepository.sendMap.get(sockId)
+
+        //받는 클라이언트가 나갔을때
+        if (senderId != null && senderId != targetId) {
             val senderSocket: WrappedSocket = sockRepository.get(senderId)!!
 
             val fileSendMessage: SockDto = SockDto(
@@ -45,8 +47,7 @@ class DefaultServerSocketExceptionHandler : ServerSocketExceptionHandler {
         }
 
         // 보내는 클라이언트가 나갔을 때
-        val targetId: String? = dataSendPermissionRepository.sendMap.get(sockId)
-        if (targetId != null) {
+        if (targetId != null && senderId != targetId) {
             val recieverSocket: WrappedSocket = sockRepository.get(targetId)!!
             val fileSendEndMessage: SockDto = SockDto(
                 "FILE_SEND_END_FAILED_STOC",

@@ -12,7 +12,7 @@ class ServerDirve {
         fun main(args: Array<String>) {
             val serverManager: ServerManager = ServerContainer.serverManager()
             val br: BufferedReader = BufferedReader(InputStreamReader(System.`in`))
-
+            /*
             while (true) {
                 try {
                     print("Setting port (0~65535):")
@@ -26,7 +26,9 @@ class ServerDirve {
                     println("Wrong setting")
                     continue
                 }
-            }
+            }*/
+
+            ServerManager.port = 55555
 
             println("Dekilla server start")
             serverManager.bind(ServerManager.port)
