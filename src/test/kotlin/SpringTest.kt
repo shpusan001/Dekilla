@@ -1,4 +1,3 @@
-import dekilla.core.AppConfig
 import org.junit.jupiter.api.Test
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
@@ -16,5 +15,5 @@ class SpringTest {
         println(serverManager2)
         Assertions.assertEquals(serverManager1, serverManager2)
     }
-    
+
 }

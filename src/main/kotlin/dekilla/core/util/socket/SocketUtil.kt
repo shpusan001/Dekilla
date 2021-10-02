@@ -1,6 +1,5 @@
 package dekilla.core.util.socket
 
-import org.springframework.stereotype.Service
 import java.io.*
 import java.net.Socket
 

@@ -1,6 +1,5 @@
 package dekilla.core.server.handler.recieve.excutor
 
-import dekilla.core.AppConfig
 import dekilla.core.container.ServerContainer
 import dekilla.core.container.UtilConatiner
 import dekilla.core.domain.SockDto
@@ -9,8 +8,6 @@ import dekilla.core.server.repository.SockRepository
 import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
-import org.springframework.context.ApplicationContext
-import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class ConnectWithTokenAskYesExcutor : ServerRecieveExcutor {
     override fun excute(sockDto: SockDto) {

@@ -8,11 +8,10 @@ import dekilla.core.util.Log.DekillaLog
 import dekilla.core.util.generator.IdGenerator
 import dekilla.core.util.socket.SocketUtil
 import dekilla.core.util.socket.WrappedSocket
-import org.springframework.stereotype.Component
+import java.io.IOException
 import java.net.ServerSocket
 import java.net.Socket
 
-@Component
 class DefaultAcceptRunnable : AcceptRunnable {
 
     private lateinit var serverSocket: ServerSocket
@@ -44,7 +43,11 @@ class DefaultAcceptRunnable : AcceptRunnable {
                     sockId,
                     null
                 )
-                socketUtil.send(wrappedSocket.socket, sockDto)
+                try {
+                    socketUtil.send(wrappedSocket.socket, sockDto)
+                } catch (e: IOException) {
+                    DekillaLog.log("Acception Error: " + e.stackTrace)
+                }
             }
         }
     }

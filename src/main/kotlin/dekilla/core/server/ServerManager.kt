@@ -2,16 +2,12 @@ package dekilla.core.server
 
 import dekilla.core.container.ServerContainer
 import dekilla.core.container.UtilConatiner
-import dekilla.core.server.repository.HashmapSockRepository
 import dekilla.core.server.repository.SockRepository
 import dekilla.core.server.runnable.accept.AcceptRunnable
 import dekilla.core.server.runnable.accept.DefaultAcceptRunnable
 import dekilla.core.server.runnable.recieve.DefaultServerRecieveRunnable
 import dekilla.core.server.runnable.recieve.ServerRecieveRunnable
 import dekilla.core.util.socket.SocketUtil
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Controller
-import org.springframework.stereotype.Service
 import java.net.ServerSocket
 
 class ServerManager {
